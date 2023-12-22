@@ -1,0 +1,13 @@
+void insertSort(int data[], int l, int r) {
+    int auxiliary = 0;
+    for (int i = l+1; i <= r; i++) {
+        if (data[i] < data[i - 1]) {
+	    auxiliary = data[i];
+            int j = i - 1;
+            while (j >= l && data[j] > auxiliary) {
+                data[j + 1] = data[j];
+                j -= 1;
+            }
+            data[j + 1] = auxiliary;
+        }
+}
