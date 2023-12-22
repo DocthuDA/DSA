@@ -1,0 +1,22 @@
+# 更新散列函数和键序列，然后重新插入键到散列表中
+def hash_function(k, m=16):
+    return (11 * k) % m
+
+# 插入键到散列表中，使用线性探测法
+def letter_to_number(key):
+    return ord(key)-64
+
+def insert_keys_linear_probing(keys, table_size):
+    table = [None] * table_size
+    for key in keys:
+        index = hash_function(letter_to_number(key), table_size)
+        # 线性探测
+        while table[index] is not None:
+            index = (index + 1) % table_size
+        table[index] = key
+    return table
+
+# 插入 "E A S Y Q U T I O N" 到大小为16的散列表
+keys = "EASYQUTION"
+hash_table = insert_keys_linear_probing(keys, 16)
+print(hash_table)  # 打印散列表
