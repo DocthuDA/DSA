@@ -1,0 +1,32 @@
+def hash_function(k, m=19):
+    return (11 * k) % m
+
+def insert_keys_square_probing(keys, table_size):
+    table = [None] * table_size
+
+    for key in keys:
+        original_index = hash_function(key, table_size)
+        index = original_index
+        i = 0
+
+        # 双向平方探测
+        while table[index] is not None:
+            i += 1
+            # 尝试向正方向和负方向探测
+            for direction in [1, -1]:
+                new_index = (original_index + direction * i**2) % table_size
+                if table[new_index] is None:
+                    index = new_index
+                    break
+            else:
+                continue
+            break
+
+        table[index] = key
+
+    return table
+
+# 使用示例
+keys = [62, 20, 12, 5, 41, 28, 105, 10, 8, 27, 3, 1]
+hash_table = insert_keys_square_probing(keys, 19)
+print(hash_table)  # 打印散列表
