@@ -1,0 +1,15 @@
+void bubbleSort(int data[], int count) {
+    int temp;
+    int pass = 1; bool exchange = true;             // 从第一趟开始
+    while (pass < count && exchange) {    
+        exchange = false;                 // 某趟是否有交换的标志，初始为无交换
+        for (int j = count - 1; j >= pass; j--) //从最后元素开始到第一个未排序元素
+            if (data[j - 1]>data[j]) {              //若需要交换则置换元素          
+                temp = data[j - 1];
+                data[j - 1] = data[j];
+                data[j] = temp;
+                exchange = true;
+            }
+        pass++;
+    }
+}
