@@ -1,0 +1,14 @@
+void selectSort(int Data[], int count){
+    int i, j, index, temp;
+    for (i = count - 1; i > 0; i--){ // 从后往前
+        index = i;
+        for (j = 0; j < i + 1; j++){ // 遍历前面未排序，选择最大元素
+            if (Data[j] > Data[index]) index = j;
+        }
+        if (index != i){              // 交换
+            temp = Data[i];
+	    Data[i] = Data[index];
+            Data[index] = temp;
+        }
+    }
+}
