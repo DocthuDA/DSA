@@ -1,0 +1,17 @@
+void quickSort(int data[], int l, int r){
+    if (l< r){
+        int pivotL = l, pivotR = r, x = data[l];
+        while (pivotL < pivotR){ 
+            while (pivotL<pivotR && data[pivotR]>x) pivotR --; 
+                     //从右向左找第一个小于x的数  
+            if (pivotL<pivotR) data[pivotL ++] = data[pivotR];
+            
+            while (pivotL<pivotR && data[pivotL]<x) pivotL++; 
+                    //从左向右找第一个大于等于x的数  
+            if (pivotL<pivotR) data[pivotR --] = data[pivotL];
+        }
+        data[pivotL] = x;
+        quickSort(data, l, pivotL - 1);   // 递归调用处理左子序列 
+        quickSort(data, pivotL + 1, r);   // 递归调用处理右子序列
+    }
+}
